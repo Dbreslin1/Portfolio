@@ -1,0 +1,18 @@
+#/bin/bash
+#basic function to add friends on BashBook
+if [ $# -ne 2 ]; then 
+	echo "nok: missing parameters" # message to declare incorrect empty parameters then exit function
+	exit 1
+fi
+
+user="$1" # initializing primary and secondary parameters
+friend="$2"
+
+if [ ! -d "$user" ]; then # check if the directory exists or not
+	echo "nok: user does not exist"
+elif grep -q "$friend" "$user/friends.txt"; then #function to declare whether friend and user are already friends plus message declaring this.
+	echo "nok: friend already added"
+else
+	echo "$friend" >> "$user/friends.txt" # message to declare friend has been added
+	echo "ok: friend added!"
+fi
